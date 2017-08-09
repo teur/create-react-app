@@ -68,6 +68,8 @@ module.exports = {
   // In production, we only want to load the polyfills and the app code.
   entry: [require.resolve('./polyfills'), paths.appIndexJs],
   output: {
+    // use library
+    library: 'ReactApp',
     // The build folder.
     path: paths.appBuild,
     // Generated JS file names (with nested folders).
@@ -195,7 +197,7 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-            test: /\.css$/,
+            test: /\.(css|less)$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -228,6 +230,9 @@ module.exports = {
                           }),
                         ],
                       },
+                    },
+                    {
+                      loader: 'less-loader'
                     },
                   ],
                 },
