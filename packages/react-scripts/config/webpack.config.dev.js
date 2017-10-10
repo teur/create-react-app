@@ -61,6 +61,8 @@ module.exports = {
     // changing JS code would still trigger a refresh.
   ],
   output: {
+    // use library
+    library: 'ReactApp',
     // Next line is not used in dev but WebpackDevServer crashes without it:
     path: paths.appBuild,
     // Add /* filename */ comments to generated require()s in the output.
@@ -184,7 +186,7 @@ module.exports = {
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
           {
-            test: /\.css$/,
+            test: /\.(css|less)$/,
             use: [
               require.resolve('style-loader'),
               {
@@ -212,6 +214,9 @@ module.exports = {
                     }),
                   ],
                 },
+              },
+              {
+                loader: 'less-loader'
               },
             ],
           },
