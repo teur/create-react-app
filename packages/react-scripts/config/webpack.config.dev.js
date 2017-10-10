@@ -61,6 +61,8 @@ module.exports = {
     // changing JS code would still trigger a refresh.
   ],
   output: {
+    // use library
+    library: 'ReactApp',
     // Add /* filename */ comments to generated require()s in the output.
     pathinfo: true,
     // This does not produce a real file. It's just the virtual path that is
@@ -182,7 +184,7 @@ module.exports = {
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
           {
-            test: /\.css$/,
+            test: /\.(css|less)$/,
             use: [
               require.resolve('style-loader'),
               {
@@ -210,6 +212,9 @@ module.exports = {
                     }),
                   ],
                 },
+              },
+              {
+                loader: 'less-loader'
               },
             ],
           },
